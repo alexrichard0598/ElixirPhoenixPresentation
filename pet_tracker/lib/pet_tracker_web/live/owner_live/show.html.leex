@@ -1,0 +1,32 @@
+<h1>Show Owner</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, PetTrackerWeb.OwnerLive.FormComponent,
+    id: @owner.id,
+    title: @page_title,
+    action: @live_action,
+    owner: @owner,
+    return_to: Routes.owner_show_path(@socket, :show, @owner) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Firstname:</strong>
+    <%= @owner.firstName %>
+  </li>
+
+  <li>
+    <strong>Lastname:</strong>
+    <%= @owner.lastName %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @owner.age %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.owner_show_path(@socket, :edit, @owner), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.owner_index_path(@socket, :index) %></span>

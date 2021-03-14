@@ -1,0 +1,42 @@
+<h1>Show Pet</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, PetTrackerWeb.PetLive.FormComponent,
+    id: @pet.id,
+    title: @page_title,
+    action: @live_action,
+    pet: @pet,
+    select: @select,
+    return_to: Routes.pet_show_path(@socket, :show, @pet) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @pet.name %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @pet.type %>
+  </li>
+
+  <li>
+    <strong>Age:</strong>
+    <%= @pet.age %>
+  </li>
+
+  <li>
+    <strong>Owner</strong>
+    <%= for owner <- @owners do %>
+      <%= if owner.id == @pet.owner do %>
+        <%= owner.firstName %> <%= owner.lastName %>
+      <% end %>
+    <% end %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.pet_show_path(@socket, :edit, @pet), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.pet_index_path(@socket, :index) %></span>

@@ -5,7 +5,7 @@
 - `mix phx.new pet_tracker --live --database mysql`
 - install dependencies
 - Open in VS CODE
-- update `config/dev.exs` to `username: dev, password: dev1234`
+- update `config/dev.exs` to `username: dev, password: Dev1234$`
 - `mix ecto.create`
 - `mix phx.gen.live Tracker Owner owners firstName lastName age:integer`
 - Copy Routes to `lib/pet_tracker_web/router.ex`
